@@ -1,4 +1,4 @@
-cnt=int(input())2
+cnt=int(input())
 for i in range(cnt): 
   num = int(input())
   idx = 0
