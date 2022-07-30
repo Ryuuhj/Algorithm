@@ -1,29 +1,27 @@
+import math
+
 def PrimeNum(num):
-    if num == 0 or num == 1:
-        return False
-    
-    arr = [1 for i in range(num+1)]
-    arr[0], arr[1], arr[-1] = 0, 0, 0
-    
-    for i in range(2, num+1):
-        if arr[i] == 1:
-            j = 2
+    arr = [True for i in range(num+1)]
+    arr[0],arr[1] = False, False
+    for i in range(2, int(math.sqrt(num))+1):
+        if arr[i] == True:
+            j=2
             while i*j <= num:
-                arr[i*j] = 0
-                j += 1
-                   
-    for k in range(len(arr)):
-        if arr[k] == 1:
-            if num % k == 0:    
-                return False
-        else:
-            continue
-    return True
+                arr[i*j]=False
+                j+=1
+                
+    return arr
                
 M = int(input())
 N = int(input())
 
-pnum = [i for i in range(M,N+1) if PrimeNum(i)]
+primeArray = PrimeNum(N)
+pnum =[]
+for i in range(M, N+1):
+    if primeArray[i] == True:
+        pnum.append(i)
+    else:continue
+        
 
 try:
   print("%d\n%d"%(sum(pnum), pnum[0]))
